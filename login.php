@@ -103,6 +103,78 @@
 	}
 ?>
 
+<?php
+
+
+	//var_dump($_GET);
+	//echo "<br>";
+	//var_dump($_POST);
+	
+	$nameError = "";
+	
+	//kas on üldse olemas?
+	if(isset ($_POST["name"])) {
+		
+		//oli olemas, ehk keegi vajutas nuppu
+		if (empty($_POST["name"])) {
+			
+			//oli tõesti tühi
+			$nameError = "See väli on kohustuslik";
+		
+		}
+	
+		 else {
+		
+		// oli midagi, ei olnud tühi
+		
+		// pikkus kas pikkus vähemalt 8
+		if (strlen ($_POST["name"]) < 8 ) {
+			
+				$nameError = "Parool peab olema vähemalt 8 tähemärki pikk";
+				
+			}
+		
+		}	
+	
+	}
+?>
+
+<?php
+
+
+	//var_dump($_GET);
+	//echo "<br>";
+	//var_dump($_POST);
+	
+	$phonenumberError = "";
+	
+	//kas on üldse olemas?
+	if(isset ($_POST["phonenumber"])) {
+		
+		//oli olemas, ehk keegi vajutas nuppu
+		if (empty($_POST["phonenumber"])) {
+			
+			//oli tõesti tühi
+			$phonenumberError = "See väli on kohustuslik";
+		
+		}
+	
+		 else {
+		
+		// oli midagi, ei olnud tühi
+		
+		// pikkus kas pikkus vähemalt 8
+		if (strlen ($_POST["phonenumber"]) < 8 ) {
+			
+				$phonenumberError = "Parool peab olema vähemalt 8 tähemärki pikk";
+				
+			}
+		
+		}	
+	
+	}
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -147,7 +219,20 @@
 		
 		
 		</form>
-	
+		
+	<h1>Additional information</h1>
+		
+		<form method="POST">
+				
+			<input placeholder="Name" name="name" type="name"> <?php echo $nameError; ?>
+		
+			<br><br> 
+			
+			<input placeholder="Phone number" name="phonenumber" type="phonenumber"> <?php echo $phonenumberError; ?>
+		
+			<br><br>
+			
+			<input type="submit" value="Add information">
 	</body>
 </html>
 
