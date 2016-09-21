@@ -22,7 +22,8 @@
 		if ((strlen($_POST["signupPassword"])) < 8) {
 				
 			$signupPasswordError = "Password must be at least 8 characters.";
-		if (($_POST['Day'] == 'Day') or ($_POST['Month'] == 'Month') or ($_POST['Year'] == 'Year'))
+		}
+		if (($_POST['Day'] == 'Day') or ($_POST['Month'] == 'Month') or ($_POST['Year'] == 'Year')){
 			$signupBirthdateError = 'Enter your date of birth.';
 		}
 		
