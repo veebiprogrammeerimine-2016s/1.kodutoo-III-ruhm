@@ -30,11 +30,7 @@
 	
 ?>
 
-
-
-
 <html>
-
 	<head>
 		<title>Login</title>
 	</head>
@@ -84,6 +80,4 @@
 		<br><br>
 		<p>MVP idee: Isiklik portfoolio lehekulg, kuhu saan lisada enda programmeerimise projektid.</p>
 	</body>
-
-
 </html>
