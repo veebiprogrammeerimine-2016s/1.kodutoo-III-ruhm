@@ -6,6 +6,8 @@
 
 	$signupEmailError = "";
 	$signupPasswordError = "";
+	$signupTelephoneError = "";
+	$signupUsernameError = "";
 	
 	//kas on olemas
 	if (isset ($_POST["signupEmail"])) {
@@ -61,7 +63,41 @@
 			
 	
 	}
+	if (isset ($_POST["signupUsername"])) {
+		
+		//Sisestati kasutajanimi
+		if (empty ($_POST["signupUsername"])) {
+		
+		//Kasutajanimi jäi sisestamata
+		$signupUsernameError = "See väli on kohustuslik";
+		
+		} else {
+			
+			
+			if (strlen ($_POST["signupUsername"]) < 6) {
+				
+				$signupUsernameError = "Kasutajanimi peab olema vähemalt 6 tähemärki";
+			}	
+			
+		}
+			
+	
+	}
+	if (isset ($_POST["signupTelephone"])) {
+		
+		//Sisestati telefoni nr
+		if (empty ($_POST["signupTelephone"])) {
+		
+		//Telefoni nr-it ei sisestatud
+		$signupTelephoneError = "See väli on kohustuslik";
+		
+		}
+				
+	}
 ?>
+
+
+
 
 
 
@@ -97,8 +133,17 @@
 
 <h1>Loo Kasutaja</h1>
 	
-		<form method="POST">
+
+	
 		
+	<html>
+		
+			<form method="POST">
+		
+			<label>Kasutajanimi</label><br>
+			<input name="signupUsername" type="text"> <?php echo $signupUsernameError; ?>
+			
+			<br><br>
 			<label>E-post</label><br>
 			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
 			
@@ -107,8 +152,14 @@
 			<input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
 			
 			<br><br>
+			<label>Telefon</label><br>
+			<input name="signupTelephone" type="tel"> <?php echo $signupTelephoneError; ?>
+			
+			<br><br>
 			
 			<input type="submit" value="Loo Kasutaja" >
+			
+			
 		
 		</form>
 	
