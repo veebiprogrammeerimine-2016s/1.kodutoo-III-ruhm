@@ -1,5 +1,4 @@
 <?php
-
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
@@ -16,7 +15,6 @@
 			$signupEmailError = "See väli on kohustuslik";
 		}
 	}
-	
 
 	$signupPasswordError = "";
 
@@ -67,9 +65,7 @@
 				$signupLastnameError = "Perekonnanimi ei saa olla pikkem kui 50 tähemärki.";
 				
 			}
-			
 		}
-		
 	}
 	
 	$signupFirstnameError = "";
@@ -112,7 +108,6 @@
 		}
 	}
 	
-	
 	$loginEmailError = "";
 
 	//kas on üldse olemas
@@ -125,7 +120,6 @@
 			$loginEmailError = "See väli on kohustuslik";
 		}
 	}
-	
 	
 	$loginPasswordError = "";
 
@@ -142,14 +136,11 @@
 	
 		
 ?>
-
 <!DOCTYPE html>
 <html>
-	
 	<head>
 		<title>Sisselogimise leht</title>
 	</head>
-	
 	<body>
 		<fieldset>
 		<legend><h1>Sisselogimine</h1></legend>
@@ -164,13 +155,10 @@
 		</form>
 		</fieldset>
 	</body>
-	
 	<br>
-	
 	<body>
 		<fieldset>
 		<legend><h1>Registreerimine</h1></legend>
-		
 		<form method="POST">
 			<input placeholder="E-post" name="signupEmail" type="email"> <font style="color:red">  <?php echo $signupEmailError;  ?>  </font>
 			<br><br>
@@ -193,15 +181,11 @@
 		</form>
 		</fieldset>
 	</body>
-
-	
 </html>
 
 <style>
-
 body {
 	background: #FAFAFA;
 	font-family: Arial;
 }
-
 </style>
