@@ -26,16 +26,16 @@
 	vertical-align: center;
 }
 .ubox{
-width:75%;
-border:solid black 1px;
-border-radius:3px;
-height: 40px;
-margin:2px;
-padding:5px;
-font-size:20px;
-font-weight:bolder;
-vertical-align: center;
-margin-left:2px;
+	width:75%;
+	border:solid black 1px;
+	border-radius:3px;
+	height: 40px;
+	margin:2px;
+	padding:5px;
+	font-size:20px;
+	font-weight:bolder;
+	vertical-align: center;
+	margin-left:2px;
 }
 
 </style>
