@@ -39,7 +39,26 @@
 			
 		}
 	}
-	
+	$signupEesnimiError = "";
+	if (isset ($_POST["signupEesnimi"])){
+		
+		//oli olemas, ehk keegi vajutas nuppu
+		//kas oli tühi
+		if (empty ($_POST["signupEesnimi"])){
+			//oli tõesti tühi 
+			$signupEesnimiError = "See väli on kohustuslik";
+		}
+	}
+	$signupPerekonnanimiError = "";
+	if (isset ($_POST["signupPerekonnanimi"])){
+		
+		//oli olemas, ehk keegi vajutas nuppu
+		//kas oli tühi
+		if (empty ($_POST["signupPerekonnanimi"])){
+			//oli tõesti tühi 
+			$signupPerekonnanimiError = "See väli on kohustuslik";
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,7 +87,16 @@
 				<input type="submit" value="Loo kasutaja">
 				
 			</form>	
-		
+		<h1>Nimi</h1>
+			<form method="POST">
+				
+				<input placeholder="Eesnimi" name= "signupEesnimi" type="name"> <?php echo $signupEesnimiError; ?>
+				<br><br>
+				<input placeholder="Perekonnanimi" name="signupPerekonnanimi" type="name"><?php echo $signupPerekonnanimiError; ?>
+				<br><br>
+				<input type="submit" value="Loo kasutaja">
+				
+			
 		
 
 	</body>
