@@ -3,34 +3,35 @@
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
+	$signupUsernameError="";
 	
+		if(isset ($_POST["signupUsername"]))
+		
+			if (empty ($_POST["signupUsername"])){
+				$signupUsernameError="See vali on kohustuslik";
+			}
+		
 	$signupEmailError="";
 	
-	if(isset ($_POST["signupEmail"]))
+		if(isset ($_POST["signupEmail"]))
 		
-	if (empty ($_POST["signupEmail"])){
-		$signupEmailError="See vali on kohustuslik";
-		}
+			if (empty ($_POST["signupEmail"])){
+				$signupEmailError="See vali on kohustuslik";
+			}
 		
 	$signupPasswordError="";
 	
-	if(isset ($_POST["signupPassword"]))
+		if(isset ($_POST["signupPassword"]))
 		
-	if (empty ($_POST["signupPassword"])){
-		$signupPasswordError="See vali on kohustuslik";
-		}	
-	else
-		if(strlen($_POST["signupPassword"]) < 8) {
+			if (empty ($_POST["signupPassword"])){
+			$signupPasswordError="See vali on kohustuslik";
+			}	
+			else
+			if(strlen($_POST["signupPassword"]) < 8) {
 			$signupPasswordError="Parool pole piisavalt pikk";
-		}
+			}
 		
-	$signupUsernameError="";
 	
-	if(isset ($_POST["signupUsername"]))
-		
-	if (empty ($_POST["signupUsername"])){
-		$signupUsernameError="See vali on kohustuslik";
-		}
 ?>
 <!DOCTYPE html>
 <html>
