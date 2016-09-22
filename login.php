@@ -29,7 +29,7 @@
 	if(isset ($_POST["signupUsername"]))
 		
 	if (empty ($_POST["signupUsername"])){
-		$signupEmailError="See vali on kohustuslik";
+		$signupUsernameError="See vali on kohustuslik";
 		}
 ?>
 <!DOCTYPE html>
