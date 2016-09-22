@@ -20,9 +20,28 @@
 	
 		}
 	}
-
-	$signupPasswordError = "";
+	$signupUsernameError = "";
 	
+	if(isset($_POST["signupUsername"])) {
+		
+			if (empty ($_POST["signupUsername"])) {
+				
+				$signupNameError = "you have to enter a username";
+			}
+	}
+	$signupNameError = "";
+	
+	if(isset($_POST["signupName"])) {
+		
+			if (empty ($_POST["signupName"])) {
+				
+				$signupNameError = "you have to enter your name";
+			}
+	}
+	$signupPasswordError = "";
+	$signupPasswordConfirmError = "";
+	//$signupPassword = "";
+	//$signupPassword = $_POST["signupPassword"];
 	if(isset($_POST["signupPassword"])) {
 		
 		//oli olemas, ehk keegi vajutas nuppu
@@ -32,7 +51,7 @@
 			//oli tühi 
 			$signupPasswordError = "you have to choose a password";
 			
-	} else {
+		} else {
 		
 		//ei olnud midagi
 		
@@ -44,10 +63,16 @@
 			}
 		}
 		
+		//lilith
+		if ($_POST["signupPassword"] != $_POST["signupPasswordConfirm"]){
+			$signupPasswordConfirmError = "password has to match";
+			
+		}
+		
+			
+		
 	}
-
-
-
+	
 ?>
 
 
@@ -62,7 +87,7 @@
 		
 		<form method="POST">
 		<!--kommentaar-->
-			<input placeholder="email" name="loginEmail" type="email">
+			<input placeholder="username" name="loginUsername" type="text">
 			
 			<br><br>
 			
@@ -84,15 +109,39 @@
 			
 			<br><br>
 			
-			<input placeholder="password" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+			<input placeholder="username" name="signupUsername type="text">
 			
 			<br><br>
 			
-			<input type="submit" value="sign up">
+			<input placeholder="password" name="signupPassword" type="password">
+			
+			<input placeholder="confirm your password" name="signupPasswordConfirm" type="password">
+			
+			<br><br>
+			
+			<?php echo $signupPasswordError; ?>
+			<?php echo $signupPasswordConfirmError; ?>
+			
+			
+			<br><br>
+			
+			<input placeholder="your name" name="signupName" type="text"> <?php echo $signupNameError; ?>
+			
+			<br><br>
+			
 			
 		
+			<input type="submit" value="sign up">
+			
+			
 		</form>
 		
+		<br><br>
 
+			<h2>MVP</h2>
+			
+				<p> My idea for a MVP is a website where people can write whatever they wish anonymously, as long as their story fits in 666 characters.</p>
+				<p> The page would be an endless scroll and the latest post would be on top of the page.</p>
 	</body>
 </html>
+
