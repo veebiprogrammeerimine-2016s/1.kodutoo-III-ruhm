@@ -41,7 +41,7 @@
 
 	<h1>Logi sisse</h1><br>
 	<form method="POST">
-		<input placeholder="Email" name="loginEmail" type="email"><br><br>
+		<input placeholder="Kasutajanimi / Email" name="loginEmail" type="text"><br><br>
 		<input placeholder="Parool" name="loginPassword" type="password"><br><br>
 		<input type="submit" value="Logi sisse">
 	</form>
