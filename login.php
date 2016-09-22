@@ -23,6 +23,14 @@
 		if(strlen($_POST["signupPassword"]) < 8) {
 			$signupPasswordError="Parool pole piisavalt pikk";
 		}
+		
+	$signupUsernameError="";
+	
+	if(isset ($_POST["signupUsername"]))
+		
+	if (empty ($_POST["signupUsername"])){
+		$signupEmailError="See vali on kohustuslik";
+		}
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +47,7 @@
 	</form>
 	<h1>Loo kasutaja</h1><br>
 	<form method="POST">
+		<input placeholder="Kasjutajanimi" name="signupUsername" type="username"><?php echo $signupUsernameError; ?><br><br>
 		<input placeholder="Email" name="signupEmail" type="email"><?php echo $signupEmailError; ?><br><br>
 		<input placeholder="Parool" name="signupPassword" type="password"><?php echo $signupPasswordError; ?><br><br>
 		<input type="submit" value="Loo kasutaja">
