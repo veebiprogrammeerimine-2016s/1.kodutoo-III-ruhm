@@ -39,6 +39,16 @@
 			}
 			
 		}
+		
+
+	}
+	$gender = "";
+	if(isset($_POST["gender"])) {
+		if(!empty($_POST["gender"])){
+			
+			//on olemas ja ei ole tühi
+			$gender = $_POST["gender"];
+		}
 	}
 	
 ?>
@@ -62,12 +72,41 @@
 		<h1>Loo kasutaja</h1>
 			<form method="POST">
 				
-				<input placeholder="Email" name= "signupEmail" type="email"> <?php echo $signupEmailError; ?>
-				<br><br>
-				<input placeholder="Parool" name="signupPassword" type="password"><?php echo $signupPasswordError; ?>
-				<br><br>
-				<input type="submit" value="Loo kasutaja">
+				<label for="email">Email  </label>
 				
+				<input placeholder="example@gmail.com" name= "signupEmail" type="email"> <?php echo $signupEmailError; ?>
+				<br><br>
+				<label for="parool">Password </label>
+				
+				<input placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" name="signupPassword" type="password"><?php echo $signupPasswordError; ?>
+				<br><br>
+				<label for="kuupäev">Date of birth  </label>
+				
+				<input placeholder="day/month/year" name="sünnikuupäev"  >
+				<br><br>
+			
+				
+				<?php if ($gender == "male") { ?>
+				<input type="radio" name="gender" value="male" checked > Mees<br>
+				<?php } else { ?>
+					<input type="radio" name="gender" value="male"> Mees<br>
+				<?php } ?>
+			
+				<?php if ($gender == "female") { ?>
+					<input type="radio" name="gender" value="female" checked > Naine<br>
+				<?php } else { ?>
+					<input type="radio" name="gender" value="female"> Naine<br>
+				<?php } ?>
+			
+				<?php if ($gender == "other") { ?>
+					<input type="radio" name="gender" value="other" checked > Muu<br>
+				<?php } else { ?>
+					<input type="radio" name="gender" value="other"> Muu<br>
+				<?php } ?>
+				
+				<br><br>
+				
+				<input type="submit" value="Loo kasutaja">
 			</form>	
 		
 		
