@@ -94,6 +94,14 @@
 		}
 				
 	}
+	
+	//Kuna sotsialiseerumine on tänapäeva maailmas liikunud üle ka virtuaalsesse maailma,
+	//siis tahaksin luua sotsiaalvõrgustiku lehekülje (näiteks Facebook). Kuid erinevuseks oleks see,
+	//et see ei ole suunatud kõigile, vaid pigem mänguritele (Arvuti, konsooli, jne). Inimesed saaksid
+	//jagada enda nostalgiat, arvamusi nii vanade klassikute kui ka uute mängude kohta ning kohtuda/sõbruneda
+	//ühiste maitsetega inimestega.
+	
+	
 ?>
 
 
