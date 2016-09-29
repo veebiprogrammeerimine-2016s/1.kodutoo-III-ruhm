@@ -1,9 +1,16 @@
 <?php
 
 require("config.php");
+require("functions.php");
+
+if(isset($_SESSION["userId"])) {
+header("Location: data.php");
+}
 //var_dump($_POST);
 //does stuff exist?
 $signupEmailError = "";
+$signupNameError = "";
+$signupBUError = "";
 $signupPasswordError = "";
 $forgotEmailNotif = "";
 $signupEmail = "";
@@ -50,28 +57,20 @@ if (isset ($_POST["signupBUEmail"])){
 		}
 	}
 }	
-if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && empty($signupEmailError) && empty($signupPasswordError)) {
+if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && empty($signupEmailError) && empty($signupPasswordError) && empty($signupNameError) && empty($signupBUError)) {
 	echo "Saving information...";
 	echo "E-mail: ".$signupEmail."<br>";
 	echo "Passwd: ".$_POST["signupPassword"]."<br>";
 	$password = hash("sha512", $_POST["signupPassword"]);
 	echo "Hashed ".$password."<br>";
 
+
+	signUp($signupEmail, $password, $_POST["signupName"], $_POST["signupBUEmail"]);
 	//connect to MariaDB
-	$db = "logindb";
-	$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $db);
-	$stmt = $mysqli->prepare("INSERT INTO user_db (email, password) VALUES (?, ?)");
-	// s - string
-	// i - int
-	// d - decimal/double
-	$stmt->bind_param("ss", $signupEmail, $password);
-	if ($stmt->execute()) {
-	echo("Your account was saved.");
-	} else {
-	echo($stmt->error);
-	}
-	echo $mysqli->error;
-	$mysqli->close();
+}
+
+if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_POST["loginEmail"]) && !empty(["loginPassword"])) {
+	login($_POST["loginEmail"], $_POST["loginPassword"]);
 }
 
 ?>
