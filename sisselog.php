@@ -114,6 +114,8 @@
 			<br><br>
 
 			<input type="submit" value="Loo kasutaja">
+			
+			//IDEE:Foorum kus kasutajad jagavad kontsertide elamusi, pilte, soovitusi, pileteid ja merchandise'i.
 
 		</form>
 
