@@ -104,7 +104,7 @@
 			<br><br>
 
 			<label>Kommentaar</label><br>
-			<textarea name="comment" rows="5" cols="40"></textarea> <?php echo $signupEmailError; ?>
+			<textarea name="comment" rows="5" cols="40"></textarea> <?php echo $signupCommentError; ?>
 			
 			<br><br>
 
