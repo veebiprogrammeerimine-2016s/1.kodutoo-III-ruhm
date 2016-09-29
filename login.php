@@ -41,6 +41,7 @@
 				
 			}
 		}
+	}
 	$signupLastNameError = "";
 		
 	//kas on üldse olemas
@@ -55,7 +56,7 @@
 		}
 		
 	}
-	}
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,3 +95,5 @@
 		</form>
 	</body>
 </html>
+
+MPV - kodulehele lüüa nn broneerimissüsteem, et saaks tuba reserveerida
