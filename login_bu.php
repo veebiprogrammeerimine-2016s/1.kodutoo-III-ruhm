@@ -1,9 +1,18 @@
 <?php
+
+require("config.php");
 //var_dump($_POST);
 //does stuff exist?
 $signupEmailError = "";
 $signupPasswordError = "";
 $forgotEmailNotif = "";
+$signupEmail = "";
+$loginEmail = "";
+if (isset ($_POST["loginEmail"] ) ) {
+	if (!empty($_POST["loginEmail"])){
+		$loginEmail = $_POST["loginEmail"];	
+	}
+}
 if (isset ($_POST["forgotEmail"] ) ) {
 	if (empty($_POST["forgotEmail"])){
 		$forgotEmailNotif = "To reset your password, please enter your email.";
@@ -15,6 +24,16 @@ if (isset ($_POST["signupEmail"] ) ) {
 	//somebody PRESSED THE BUTTON
 	if (empty($_POST["signupEmail"])){
 		$signupEmailError = "Please enter your e-mail";		
+	} else {
+		$signupEmail = $_POST["signupEmail"];
+	}
+}
+if (isset ($_POST["signupPassword"] ) ) {
+	if (empty($_POST["signupPassword"])){
+		$signupPasswordError = "Please enter a password.";
+	} else {
+		// pikkus vähemalt kaheksa
+		if (strlen ($_POST["signupPassword"]) < 8) { $signupPasswordError = "Please make sure your password is at least 8 characters long.";}
 	}
 }
 if (isset ($_POST["signupName"])){
@@ -30,15 +49,31 @@ if (isset ($_POST["signupBUEmail"])){
 			$signupBUError = "Your regular email and backup email cannot be the same.";
 		}
 	}
-}
-if (isset ($_POST["signupPassword"] ) ) {
-	if (empty($_POST["signupPassword"])){
-		$signupPasswordError = "Please enter a password.";
-	} else {
-		// pikkus vähemalt kaheksa
-		if (strlen ($_POST["signupPassword"]) < 8) { $signupPasswordError = "Please make sure your password is at least 8 characters long.";}
-	}
 }	
+if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && empty($signupEmailError) && empty($signupPasswordError)) && empty($signupNameError) && empty($signupBUError) {
+	echo "Saving information...";
+	echo "E-mail: ".$signupEmail."<br>";
+	echo "Passwd: ".$_POST["signupPassword"]."<br>";
+	$password = hash("sha512", $_POST["signupPassword"]);
+	echo "Hashed ".$password."<br>";
+
+	//connect to MariaDB
+	$db = "logindb";
+	$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $db);
+	$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password, displayname, backupemail) VALUES (?, ?)");
+	// s - string
+	// i - int
+	// d - decimal/double
+	$stmt->bind_param("ssss", $signupEmail, $password,$_POST["signupName"], $_POST["signupBUEmail"]);
+	if ($stmt->execute()) {
+	echo("Your account was saved.");
+	} else {
+	echo($stmt->error);
+	}
+	echo $mysqli->error;
+	$mysqli->close();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +89,7 @@ if (isset ($_POST["signupPassword"] ) ) {
 		<form method="POST">
 		<label>E-mail address</label>	
 		<br>
-		<input name="loginEmail" type="email" autofocus>
+		<input name="loginEmail" type="email" value="<?php echo $loginEmail; ?>" autofocus>
 		<br><br>
 		<label>Password</label>
 		<br>
@@ -70,7 +105,7 @@ if (isset ($_POST["signupPassword"] ) ) {
 		<form method="POST">
 		<label>E-mail address</label>
 		<br>
-		<input name="signupEmail" type="email"><?php echo $signupEmailError; ?>
+		<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
 		<br><br>
 		<label>Password</label>
 		<br>
