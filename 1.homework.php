@@ -8,7 +8,8 @@
 	
 	
 	$signupeEmailError= "";
-	
+	$signupEmail = "";
+
 	if (isset ($_POST["signupEmail"])) {
 		
 	}
@@ -17,21 +18,54 @@
 	if (empty ($_POST["signupEmail"])) {
 		
 		//oli t2esti tühi
-		$signupeEmailError = "See väli on kohustuslik";
+		$signupeEmailError = "*";
 		
 		
 	}
+	$signupfirstnameError = "";
+	$signupfirstname = "";
 	
+	if (isset ($_POST["signupfirstname"])) {
+		
+	}
 	
+	if (empty ($_POST["signupfirstname"])) {
+		
+		$signupfirstnameError = "This field is optional";
+	}
+	
+	$signuplastnameError="";
+	$signuplastname="";
+	
+	if (isset ($_POST["signuplastname"])) {
+	
+	}
+	
+	if (empty ($_POST["signuplastname"])) {
+		
+		$signuplastnameError = "This field is optional";
+	}
+	$signupgenerError = "";
+	$signupgender = "";
+	
+	if (isset ($_POST["signupgender"])) {
+		
+	}
+	
+	if (empty ($_POST ["signupgender"])) {
+		
+		$signupgenderError = "*";
+	}
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Leht</title>
+		<title>Page</title>
 	</head>
 	<body>
 
-		<h1>Logi sisse</h1>
+		<h1>Log in</h1>
 		
 		<form method ="POST">
 			
@@ -39,7 +73,7 @@
 		
 			<br> <br>
 		
-			<input placeholder= "Parool" name="loginPassword" type="password">
+			<input placeholder= "Password" name="loginPassword" type="password">
 			
 			<br> <br>
 			
@@ -66,7 +100,7 @@
 	if (empty ($_POST["signupPassword"])) {
 		
 		//oli t2esti tühi
-		$signupPasswordError = "See väli on kohustuslik";
+		$signupPasswordError = "*";
 			
 			} else {
 				
@@ -75,13 +109,13 @@
 				//kas pikkus vähemalt kui 8
 				if (strlen ($_POST["signupPassword"]) < 8 ) {
 				
-				$signupPasswordError = "Kas parooli pikkus on 8 sümboli?";
+				$signupPasswordError = "Does your password consist of at least 8 symbols?";
 				
 			}
 		
 				if (empty($_POST["gender"])) {
 				
-				$genderErr = "See väli on kohustuslik";
+				$genderErr = "*";
 			
 				} else {
 		
@@ -89,40 +123,74 @@
 			}
 		
 		}
-	
+	$gender = "";
+	if(isset($_POST["gender"])) {
+		if(!empty($_POST["gender"])){
+			
+			//on olemas ja ei ole tühi
+			$gender = $_POST["gender"];
+		}
+	}
 ?>		
-	<h1>Kasutaja loomine</h1>
+	<h1>Sign up</h1>
+		
+		<?php echo "* required"; ?>
+		<br><br>
 		
 		<form method ="POST">
 			
-			<label>E-post</label>
-			<input name="signupEmail" type="email"> <?php echo $signupeEmailError; ?>
+			<label>E-mail</label>
+			<br><input name="signupEmail" type="email"> <?php echo $signupeEmailError; ?>
 		
 			<br> <br>
 			
-			<label>Parool</label>
-			<input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+			<label>Password</label>
+			<br><input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+			
+			<br> <br>
+			<label>Firstame</label>
+			 <br><input name="signupfisrtname" type="text"> <?php echo $signupfirstnameError ?>
+		
+			<br> <br>
+			
+			<label>Surname</label>
+			 <br><input name="signuplastname" type="text"> <?php echo $signuplastnameError ?>
+			
 			
 			<br> <br>
 			
-			<label>Sugu:</label>
-			<input type="radio" name="gender" 
-			<?php if (isset($gender) && $gender=="female") echo "checked";?> 
-			value="female">Naine
+			<label>Gender:</label> <?php echo $signupgenderError ?>
+			<br>
 			
-			<input type="radio" name="gender"
-			<?php if (isset($gender) && $gender=="male") echo "checked"; ?> 
-			value="male">Mees
+			<?php if ($gender == "male") { ?> 
+				<input type="radio" name="gender" value="male" checked > Male<br>
+			<?php } else { ?>
+				<input type="radio" name="gender" value="male"> Male<br>
+			<?php } ?>
+			
+			<?php if ($gender == "female") { ?>
+				<input type="radio" name="gender" value="female" checked > Female<br>
+			<?php } else { ?>
+				<input type="radio" name="gender" value="female"> Female<br>
+			<?php } ?>
+			
+			<?php if ($gender == "other") { ?>
+				<input type="radio" name="gender" value="other" checked > Other<br>
+			<?php } else { ?>
+				<input type="radio" name="gender" value="other"> Other<br>
+			<?php } ?>
 			
 			<br> <br>
 			
-			<label>Teie komentaarid:</label>
+			<label>Comments:</label>
+			
+			<br> <br>
 			
 			<textarea name="comment" rows="5" cols="40"> </textarea>
 			
 			<br> <br>
 			
-			<input type="submit" value="loo kasutaja">
+			<input type="submit" value="Sign up">
 			
 			<br> <br>
 		</form>
