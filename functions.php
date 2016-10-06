@@ -86,5 +86,31 @@ function signUp($email, $password, $displayname, $backupemail){
 	$mysqli->close();
 	echo("I REACHED IT");
 }
+
+function saveNote($note, $color){
+	echo("IS IT WORKING 2");
+	$mysqli = new mysqli(
+	$GLOBALS["serverHost"],
+	$GLOBALS["serverUsername"],
+	$GLOBALS["serverPassword"],
+	$GLOBALS["db"]
+	);
+
+	echo $mysqli->error;
+	echo("what");
+	$stmt = $mysqli->prepare("INSERT INTO colornotes (note, color) VALUES (?, ?)");
+	// s - string
+	// i - int
+	// d - decimal/double
+	$stmt->bind_param("ss", $note, $color);
+	if ($stmt->execute()) {
+	echo("Note is saved.");
+	} else {
+	echo($stmt->error);
+	}
+	echo $mysqli->error;
+	$mysqli->close();
+	echo("I REACHED IT");
+}
 ?>
 

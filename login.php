@@ -6,8 +6,6 @@ require("functions.php");
 if(isset($_SESSION["userId"])) {
 header("Location: data.php");
 }
-//var_dump($_POST);
-//does stuff exist?
 $signupEmailError = "";
 $signupNameError = "";
 $signupBUError = "";
