@@ -1,6 +1,6 @@
 <?php
 require("functions.php");
-require("config.php");
+
 
 //is the user meaning to log out?
 if (isset($_GET["logout"])) {
@@ -21,7 +21,12 @@ if (isset($_POST["note"]) and isset($_POST["notecolor"])) {
 		saveNote($note, $color);
 	}
 }
+$notes = getAllNotes();
+echo "<pre>";
+//var_dump($notes);
+echo "</pre>";
 ?>
+
 
 
 <h1>Data</h1>
@@ -37,8 +42,7 @@ Welcome, <?=$_SESSION["userEmail"]?>.
 	<form method="POST">
 	<label>Note</label>	
 	<br>
-	<textarea name="note" type="text" autofocus rows="4" cols="50">
-	</textarea>
+	<textarea name="note" type="text" autofocus rows="4" cols="50"></textarea>
 	<br><br> 
 	<label>Note color</label>
 	<br>
@@ -47,3 +51,32 @@ Welcome, <?=$_SESSION["userEmail"]?>.
 	<input type="submit" value="Save your note">
 	</form>
 	</fieldset>
+
+<?php
+
+foreach ($notes as $n) {
+	$style = "width:150px; float:left;min-height:150px; border:1px solid gray; background-color: ".$n->notecolor.";";
+	echo "<p style='".$style."'>".$n->note."</p>";
+}
+?>
+
+<h2 style="clear:both;">Tabel</h2>
+<?php
+
+	$html = "<table>";
+	$html .= "<tr>";
+		$html .= "<th>id</th>";
+		$html .= "<th>Note</th>";
+		$html .= "<th>Color</th>";
+	$html .= "</tr>";
+
+	foreach ($notes as $note) {
+		$html .= "<tr>";
+		$html .= "<td>".$note->id."</td>";
+		$html .= "<td>".$note->note."</td>";
+		$html .= "<td>".$note->notecolor."</td>";
+		$html .= "</tr>";
+	}
+	$html .= "</table>";
+	echo $html;
+?>

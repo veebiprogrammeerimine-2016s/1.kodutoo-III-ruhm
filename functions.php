@@ -1,4 +1,5 @@
 <?php
+require("config.php");
 //for using $_SESSION stuff
 //in all files that are connected with functions.php
 session_start();
@@ -112,5 +113,29 @@ function saveNote($note, $color){
 	$mysqli->close();
 	echo("I REACHED IT");
 }
-?>
 
+
+function getAllNotes(){
+$mysqli = new mysqli(
+	$GLOBALS["serverHost"],
+	$GLOBALS["serverUsername"],
+	$GLOBALS["serverPassword"],
+	$GLOBALS["db"]
+	);
+	$stmt = $mysqli->prepare("select id, note, color from colornotes");
+	$stmt->bind_result($id, $note, $color);
+	$stmt->execute();
+	$result = array();
+
+	while($stmt->fetch()) {
+		
+		$object = new StdClass();
+		$object->id = $id;
+		$object->note = $note;		
+		$object->notecolor = $color;
+		array_push($result, $object);
+	}
+	return $result;
+}
+
+?>

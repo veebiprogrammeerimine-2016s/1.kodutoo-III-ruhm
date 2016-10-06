@@ -1,6 +1,6 @@
 <?php
 
-require("config.php");
+
 require("functions.php");
 
 if(isset($_SESSION["userId"])) {
