@@ -10,6 +10,7 @@ $signupEmailError = "";
 $signupNameError = "";
 $signupBUError = "";
 $signupPasswordError = "";
+$controlPasswordError = "";
 $forgotEmailNotif = "";
 $signupEmail = "";
 $loginEmail = "";
@@ -46,6 +47,16 @@ if (isset ($_POST["signupName"])){
 		$signupNameError = "Please enter your display name.";
 	}
 }
+if (isset ($_POST["controlPassword"])){
+    if (empty($_POST["controlPassword"])){
+        $controlPasswordError = "Please retype your password for security purposes";
+    } else {
+        if ($_POST["signupPassword"] != $_POST["controlPassword"]){
+        $controlPasswordError = "The passwords you have typed are not the same";
+        }
+    }
+
+}
 if (isset ($_POST["signupBUEmail"])){
 	if (empty($_POST["signupBUEmail"])){
 		$signupBUError = "Please enter a backup email account.";
@@ -55,7 +66,7 @@ if (isset ($_POST["signupBUEmail"])){
 		}
 	}
 }	
-if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && empty($signupEmailError) && empty($signupPasswordError) && empty($signupNameError) && empty($signupBUError)) {
+if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && isset($_POST["controlPassword"]) && empty($signupEmailError) && empty($signupPasswordError) && empty($signupNameError) && empty($signupBUError) && empty($controlPasswordError)){
 	echo "Saving information...";
 	echo "E-mail: ".$signupEmail."<br>";
 	echo "Passwd: ".$_POST["signupPassword"]."<br>";
@@ -108,7 +119,11 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_PO
 		<br>
 		<input name="signupPassword" type="password"><?php echo $signupPasswordError; ?>
 		<br><br>
-		<label>Full name</label>
+		<label>Retype your Password</label>
+		<br>
+		<input name="controlPassword" type="password"><?php echo $controlPasswordError; ?>
+		<br><br>
+		<label>Display name</label>
 		<br>
 		<input name="signupName" type="text"><?php echo $signupNameError; ?>
 		<br><br>
