@@ -74,7 +74,7 @@
 				<br><br>
 				<input placeholder="Parool" name="loginpassword" type="password">
 				<br><br>
-				<input type="submit">
+				<input type="submit" value="Logi Sisse">
 				
 			</form>
 		<h1>Loo kasutaja</h1>
@@ -83,11 +83,10 @@
 				<input placeholder="Email" name= "signupEmail" type="email"> <?php echo $signupEmailError; ?>
 				<br><br>
 				<input placeholder="Parool" name="signupPassword" type="password"><?php echo $signupPasswordError; ?>
-				<br><br>
-				<input type="submit" value="Loo kasutaja">
+				<br>
 				
-			
-		<h1>Nimi</h1>
+				
+		<h2>Nimi</h2>
 			<form method="POST">
 				
 				<input placeholder="Eesnimi" name= "signupEesnimi" type="name"> <?php echo $signupEesnimiError; ?>
