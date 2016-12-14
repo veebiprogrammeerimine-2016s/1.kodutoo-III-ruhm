@@ -86,7 +86,7 @@
 				<br><br>
 				<input type="submit" value="Loo kasutaja">
 				
-			</form>	
+			
 		<h1>Nimi</h1>
 			<form method="POST">
 				
@@ -96,7 +96,7 @@
 				<br><br>
 				<input type="submit" value="Loo kasutaja">
 				
-			
+			</form>	
 		
 
 	</body>
